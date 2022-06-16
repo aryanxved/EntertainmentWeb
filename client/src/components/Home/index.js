@@ -6,6 +6,8 @@ import { MuiThemeProvider, createTheme } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
+import Box from '@material-ui/core/Box';
+import TextField from '@material-ui/core/TextField';
 
 
 //Dev mode
@@ -66,7 +68,43 @@ const styles = theme => ({
   },
 
 });
+function Title(){
+  return(
+  <div>
+  <Typography variant="h3" component="div" gutterBottom>
+        Welcome to the ReviewPortal
+      </Typography>
+  </div>
+  
+  ) 
+}
+function MovieName(){
+  return(
+  <div>
+  <TextField
+          id="MovieNameTextbox"
+          label="Movie Name"
+          defaultValue=""
+          helperText="Input Movie Name"
+          variant="outlined"
+          style={{marginTop: "50px"}}
+        />
+  </div>
+  
+  )
 
+  
+}
+
+function Review(){
+return(
+  <div>
+      <Title></Title>
+      <MovieName></MovieName>
+        </div>
+
+)
+}
 
 class Home extends Component {
   constructor(props) {
@@ -153,11 +191,15 @@ class Home extends Component {
       <MuiThemeProvider theme={theme}>
         <div className={classes.root}>
           <CssBaseline />
-          <Paper
-            className={classes.paper}
-          >
-            {mainMessage}
-          </Paper>
+          <Grid
+          container
+          spacing={0}
+          direction="column"
+          justify="center"
+          alignItems="center">
+          <Review></Review>
+          </Grid>
+        
 
         </div>
       </MuiThemeProvider>
@@ -170,3 +212,5 @@ Home.propTypes = {
 };
 
 export default withStyles(styles)(Home);
+
+
