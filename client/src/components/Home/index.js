@@ -25,7 +25,7 @@ const theme = createTheme({
   palette: {
     type: 'dark',
     background: {
-      default: "#000000"
+      default: "#000050"
     },
     primary: {
       main: "#52f1ff",
@@ -212,14 +212,14 @@ function Review() {
 
     if (movie !== "" && movieTitle !== "" && movieDescription !== "" && movieRating !== ""){
       setMovieInfo(
-      <div className = "ReviewPosted">
-        <div>{movie}</div>
+      <div className = "ReviewPosted" style={{marginTop: "30px", alignContent: "center"}}>Thank you for your review: 
+        <div style={{fontSize: "14px", marginTop: "10px"}}>The selected movie name is: <br/>{movie}</div>
         <br/>
-        <div>{movieTitle}</div>
+        <div style={{fontSize: "14px", marginTop: "10px"}}>What is this movie about? <br/>{movieTitle}</div>
         <br/>
-        <div>{movieDescription}</div>
+        <div style={{fontSize: "14px", marginTop: "10px"}}>What I thought about the movie? <br/>{movieDescription}</div>
         <br/>
-        <div>{movieRating}</div>
+        <div style={{fontSize: "14px", marginTop: "10px"}}>What I rate the movie out of 5? <br/>{movieRating}</div>
         </div>)
     }
     
