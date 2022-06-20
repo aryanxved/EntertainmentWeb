@@ -1,13 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { MuiThemeProvider, createTheme } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
-import Box from '@material-ui/core/Box';
-import TextField from '@material-ui/core/TextField';
+import {Grid, Button, Select, MenuItem, FormControl, InputLabel, TextField, Radio, FormLabel, RadioGroup, FormControlLabel, FormHelperText} from "@material-ui/core/";
 
 
 //Dev mode
@@ -72,36 +69,174 @@ function Title(){
   return(
   <div>
   <Typography variant="h3" component="div" gutterBottom>
-        Welcome to the ReviewPortal
+        Review a Movie
       </Typography>
   </div>
   
   ) 
 }
-function MovieName(){
-  return(
-  <div>
-  <TextField
-          id="MovieNameTextbox"
-          label="Movie Name"
-          defaultValue=""
-          helperText="Input Movie Name"
-          variant="outlined"
-          style={{marginTop: "50px"}}
-        />
-  </div>
-  
-  )
 
+function ReviewTitle(props){
   
+  const handleChange = (event) => {
+    props.handler(event.target.value);
+  };
+
+  return(
+  <TextField
+      error={props.errorMessage==="" ? false : true}
+      onChange={handleChange}
+
+          id="MovieNameTextbox"
+          label="Title of Review"
+          defaultValue=""
+          helperText={props.errorMessage}
+          variant="outlined"
+          style={{marginTop: "50px", width: "55vh"}}
+        />
+  )
 }
 
-function Review(){
+function MovieSelection(props){
+
+  const handleChange = (event) => {
+    props.handler(event.target.value);
+  };
+  
+  return(
+    <div>
+      <FormControl variant="outlined" style={{marginTop: "30px", width: "55vh"}}>
+        <InputLabel>Select Movie</InputLabel>
+        <Select
+          error={props.errorMessage==="" ? false : true}
+          onChange={handleChange}
+        >
+
+          <MenuItem value={"Avengers"}>Avengers</MenuItem>
+          <MenuItem value={"Spiderman"}>Spiderman</MenuItem>
+          <MenuItem value={"Ironman"}>Ironman</MenuItem>
+          <MenuItem value={"Dr.Strange"}>Dr.Strange</MenuItem>
+          <MenuItem value={"Ms.Marvel"}>Ms.Marvel</MenuItem>
+        </Select>
+        <FormHelperText error>{props.errorMessage}</FormHelperText>
+      </FormControl>
+    </div>
+  )
+}
+
+function ReviewBody(props){
+  
+  const handleChange = (event) => {
+    props.handler(event.target.value);
+  };
+  
+  return(
+  <div>
+    <TextField style={{width: "55vh", marginTop: "30px"}}
+    
+    error={props.errorMessage==="" ? false : true}
+    onChange={handleChange}
+
+          id="outlined-multiline-static"
+          label="Enter Review Description"
+          multiline
+          rows={4}
+          inputProps={{maxLength: 200}}
+          variant="outlined"
+          helperText={props.errorMessage}
+        />
+  </div>
+  )
+}
+
+function ReviewRating(props){
+  
+  const handleChange = (event) => {
+    props.handler(event.target.value);
+  };
+
+  return(
+    <div>
+      <FormControl style={{marginTop: "30px", justifyItems: "center"}} error={props.errorMessage==="" ? false : true}
+          onChange={handleChange}>
+      <FormLabel id="demo-row-radio-buttons-group-label">Star Rating</FormLabel>
+      <RadioGroup
+        row
+        aria-labelledby="demo-row-radio-buttons-group-label"
+        name="row-radio-buttons-group"
+      >
+        <FormControlLabel value="1" control={<Radio />} label="1" />
+        <FormControlLabel value="2" control={<Radio />} label="2" />
+        <FormControlLabel value="3" control={<Radio />} label="3" />
+        <FormControlLabel value="4" control={<Radio />} label="4" />
+        <FormControlLabel value="5" control={<Radio />} label="5" />
+      </RadioGroup>
+      <FormHelperText error>{props.errorMessage}</FormHelperText>
+    </FormControl>
+    </div>
+  )
+}
+
+
+function Review() {
+  const [movie, setMovie] = useState("")
+  const [movieError, setMovieError] = useState("")
+  const [movieTitle, setMovieTitle] = useState("")
+  const [movieErrorTitle, setMovieErrorTitle] = useState("")
+  const [movieDescription, setMovieDescription] = useState("")
+  const [movieErrorDescription, setMovieErrorDescription] = useState("")
+  const [movieRating, setMovieRating] = useState("")
+  const [movieErrorRating, setMovieErrorRating] = useState("")
+
+  const [movieInfo, setMovieInfo] = useState("")
+
+
+  const submitButton = () => {
+    setMovieError("");
+    setMovieErrorTitle("");
+    setMovieErrorDescription("");
+    setMovieErrorRating("");
+    if (movie === ""){
+      setMovieError("Please select a movie.")
+    }
+    if (movieTitle === ""){
+      setMovieErrorTitle("Please select a movie.")
+    }
+    if (movieDescription === ""){
+      setMovieErrorDescription("Please select a movie.")
+    }
+    if (movieRating === ""){
+      setMovieErrorRating("Please select a movie.")
+    }
+
+
+    if (movie !== "" && movieTitle !== "" && movieDescription !== "" && movieRating !== ""){
+      setMovieInfo(
+      <div className = "ReviewPosted">
+        <div>{movie}</div>
+        <br/>
+        <div>{movieTitle}</div>
+        <br/>
+        <div>{movieDescription}</div>
+        <br/>
+        <div>{movieRating}</div>
+        </div>)
+    }
+    
+  }
+
 return(
   <div>
-      <Title></Title>
-      <MovieName></MovieName>
-        </div>
+     <Title></Title>
+      <MovieSelection handler={setMovie} errorMessage = {movieError}></MovieSelection>
+      <ReviewTitle handler={setMovieTitle} errorMessage = {movieErrorTitle}></ReviewTitle>
+      <ReviewBody handler={setMovieDescription} errorMessage = {movieErrorDescription}></ReviewBody>
+      <ReviewRating handler={setMovieRating} errorMessage = {movieErrorRating}></ReviewRating>
+      <Button variant="outlined" onClick={submitButton}>Submit</Button>
+      <Typography variant="h5" component="div" gutterBottom>
+        {movieInfo}
+      </Typography>
+  </div>
 
 )
 }
