@@ -212,7 +212,7 @@ function Review() {
 
     if (movie !== "" && movieTitle !== "" && movieDescription !== "" && movieRating !== ""){
       setMovieInfo(
-      <div className = "ReviewPosted" style={{marginTop: "30px", alignContent: "center"}}>Thank you for your review: 
+      <div className = "ReviewPosted" style={{marginTop: "30px", alignContent: "center", width: "55vh"}}>Thank you for your review: 
         <div style={{fontSize: "14px", marginTop: "10px"}}>The selected movie name is: <br/>{movie}</div>
         <br/>
         <div style={{fontSize: "14px", marginTop: "10px"}}>What is this movie about? <br/>{movieTitle}</div>
