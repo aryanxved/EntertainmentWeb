@@ -8,10 +8,10 @@ import {Grid, Button, Select, MenuItem, FormControl, InputLabel, TextField, Radi
 
 
 //Dev mode
-const serverURL = ""; //enable for dev mode
+//const serverURL = ""; //enable for dev mode
 
 //Deployment mode instructions
-//const serverURL = "http://ov-research-4.uwaterloo.ca:PORT"; //enable for deployed mode; Change PORT to the port number given to you;
+const serverURL = "http://ov-research-4.uwaterloo.ca:"; //enable for deployed mode; Change PORT to the port number given to you;
 //To find your port number: 
 //ssh to ov-research-4.uwaterloo.ca and run the following command: 
 //env | grep "PORT"
@@ -197,16 +197,16 @@ function Review() {
     setMovieErrorDescription("");
     setMovieErrorRating("");
     if (movie === ""){
-      setMovieError("Please select a movie.")
+      setMovieError("Error: Please select a movie from the dropdown!")
     }
     if (movieTitle === ""){
-      setMovieErrorTitle("Please select a movie.")
+      setMovieErrorTitle("Error: Please enter a movie title!")
     }
     if (movieDescription === ""){
-      setMovieErrorDescription("Please select a movie.")
+      setMovieErrorDescription("Error: Please enter a movie description!")
     }
     if (movieRating === ""){
-      setMovieErrorRating("Please select a movie.")
+      setMovieErrorRating("Error: Please input a star rating!")
     }
 
 
