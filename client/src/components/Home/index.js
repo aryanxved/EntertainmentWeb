@@ -8,10 +8,10 @@ import {Grid, Button, Select, MenuItem, FormControl, InputLabel, TextField, Radi
 
 
 //Dev mode
-//const serverURL = ""; //enable for dev mode
+const serverURL = ""; //enable for dev mode
 
 //Deployment mode instructions
-const serverURL = "http://ov-research-4.uwaterloo.ca:"; //enable for deployed mode; Change PORT to the port number given to you;
+//const serverURL = "ec2-18-216-101-119.us-east-2.compute.amazonaws.com:"; //enable for deployed mode; Change PORT to the port number given to you;
 //To find your port number: 
 //ssh to ov-research-4.uwaterloo.ca and run the following command: 
 //env | grep "PORT"
@@ -111,12 +111,11 @@ function MovieSelection(props){
           error={props.errorMessage==="" ? false : true}
           onChange={handleChange}
         >
-
-          <MenuItem value={"Avengers"}>Avengers</MenuItem>
-          <MenuItem value={"Spiderman"}>Spiderman</MenuItem>
-          <MenuItem value={"Ironman"}>Ironman</MenuItem>
-          <MenuItem value={"Dr.Strange"}>Dr.Strange</MenuItem>
-          <MenuItem value={"Ms.Marvel"}>Ms.Marvel</MenuItem>
+          {props.movies.map((item) => {
+              return(
+                <MenuItem value ={item.name}> {item.name} </MenuItem>
+              );
+            })}
         </Select>
         <FormHelperText error>{props.errorMessage}</FormHelperText>
       </FormControl>
@@ -140,7 +139,7 @@ function ReviewBody(props){
           id="outlined-multiline-static"
           label="Enter Review Description"
           multiline
-          rows={4}
+          minRows={4}
           inputProps={{maxLength: 200}}
           variant="outlined"
           helperText={props.errorMessage}
@@ -189,7 +188,39 @@ function Review() {
   const [movieErrorRating, setMovieErrorRating] = useState("")
 
   const [movieInfo, setMovieInfo] = useState("")
+  
+  const [movieList, setMoviesList] = useState([])
 
+
+  const getMovies = () => {
+    callApiGetMovies()
+      .then(res => {
+        console.log("callApiGetMovies returned: ", res)
+        var parsed = JSON.parse(res.express);
+        console.log("callApiGetMovies parsed: ", parsed);
+        setMoviesList(parsed);
+      })
+  }
+
+  React.useEffect(() => {
+    getMovies();
+  }, [])
+
+  const callApiGetMovies = async () => {
+    const url = serverURL + "/api/getMovies";
+    console.log(url);
+  
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      }
+    });
+    const body = await response.json();
+    if (response.status !== 200) throw Error(body.message);
+    return body;
+  }
+  
 
   const submitButton = () => {
     setMovieError("");
@@ -228,7 +259,7 @@ function Review() {
 return(
   <div>
      <Title></Title>
-      <MovieSelection handler={setMovie} errorMessage = {movieError}></MovieSelection>
+      <MovieSelection handler={setMovie} errorMessage = {movieError} movies = {movieList}></MovieSelection>
       <ReviewTitle handler={setMovieTitle} errorMessage = {movieErrorTitle}></ReviewTitle>
       <ReviewBody handler={setMovieDescription} errorMessage = {movieErrorDescription}></ReviewBody>
       <ReviewRating handler={setMovieRating} errorMessage = {movieErrorRating}></ReviewRating>
@@ -330,7 +361,7 @@ class Home extends Component {
           container
           spacing={0}
           direction="column"
-          justify="center"
+          justifyContent="center"
           alignItems="center">
           <Review></Review>
           </Grid>
@@ -341,6 +372,7 @@ class Home extends Component {
     );
   }
 }
+
 
 Home.propTypes = {
   classes: PropTypes.object.isRequired
