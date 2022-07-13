@@ -186,10 +186,11 @@ function Review() {
   const [movieErrorDescription, setMovieErrorDescription] = useState("")
   const [movieRating, setMovieRating] = useState("")
   const [movieErrorRating, setMovieErrorRating] = useState("")
-
   const [movieInfo, setMovieInfo] = useState("")
   
   const [movieList, setMoviesList] = useState([])
+
+  const [userID, setUserID] = useState(1)
 
 
   const getMovies = () => {
@@ -220,6 +221,40 @@ function Review() {
     if (response.status !== 200) throw Error(body.message);
     return body;
   }
+
+  
+  const handleAddReview = () => {
+    callApiAddReview()
+      .then(res => {
+      });
+  }
+
+  const callApiAddReview = async () => {
+
+    const url = serverURL + "/api/addReview";
+    
+    var submittedReview = {
+      "reviewTitle": movieTitle,
+      "reviewContent": movieDescription,
+      "reviewScore": movieRating,
+      "userID": userID,
+      "movieID": movie
+    }
+
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        //authorization: `Bearer ${this.state.token}`
+      },
+      body: JSON.stringify(submittedReview)
+    });
+    const body = await response.json();
+    if (response.status !== 200) throw Error(body.message);
+    console.log("Found reviews: ", body);
+    return body;
+  }
+
   
 
   const submitButton = () => {
@@ -252,6 +287,7 @@ function Review() {
         <br/>
         <div style={{fontSize: "14px", marginTop: "10px"}}>What I rate the movie out of 5? <br/>{movieRating}</div>
         </div>)
+        handleAddReview();
     }
     
   }
