@@ -113,7 +113,7 @@ function MovieSelection(props){
         >
           {props.movies.map((item) => {
               return(
-                <MenuItem value ={item.name}> {item.name} </MenuItem>
+                <MenuItem value ={item}> {item.name} </MenuItem>
               );
             })}
         </Select>
@@ -238,7 +238,7 @@ function Review() {
       "reviewContent": movieDescription,
       "reviewScore": movieRating,
       "userID": userID,
-      "movieID": movie
+      "movieID": movie.id
     }
 
     const response = await fetch(url, {
@@ -262,7 +262,7 @@ function Review() {
     setMovieErrorTitle("");
     setMovieErrorDescription("");
     setMovieErrorRating("");
-    if (movie === ""){
+    if (Object.keys(movie).length === 0){
       setMovieError("Error: Please select a movie from the dropdown!")
     }
     if (movieTitle === ""){
@@ -276,10 +276,10 @@ function Review() {
     }
 
 
-    if (movie !== "" && movieTitle !== "" && movieDescription !== "" && movieRating !== ""){
+    if (Object.keys(movie).length !== 0 && movieTitle !== "" && movieDescription !== "" && movieRating !== ""){
       setMovieInfo(
       <div className = "ReviewPosted" style={{marginTop: "30px", alignContent: "center", width: "55vh"}}>Thank you for your review: 
-        <div style={{fontSize: "14px", marginTop: "10px"}}>The selected movie name is: <br/>{movie}</div>
+        <div style={{fontSize: "14px", marginTop: "10px"}}>The selected movie name is: <br/>{movie.name}</div>
         <br/>
         <div style={{fontSize: "14px", marginTop: "10px"}}>What is this movie about? <br/>{movieTitle}</div>
         <br/>
