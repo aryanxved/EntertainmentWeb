@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NavBar from '../NavBar';
 
-class Landing extends Component {
+class Search extends Component {
 render() {
     return (
         <>
@@ -10,4 +10,4 @@ render() {
   }
 }
 
-export default Landing;
+export default Search;

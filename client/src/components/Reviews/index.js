@@ -308,7 +308,7 @@ return(
 )
 }
 
-class Home extends Component {
+class Reviews extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -411,10 +411,10 @@ class Home extends Component {
 }
 
 
-Home.propTypes = {
+Reviews.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Home);
+export default withStyles(styles)(Reviews);
 
 

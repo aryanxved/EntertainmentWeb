@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import NavBar from '../NavBar';
 
-class Landing extends Component {
+class MyPage extends Component {
 render() {
     return (
-        <>
-        </>
+        <></>
+        // <NavBar />
     );
   }
 }
 
-export default Landing;
+export default MyPage;
