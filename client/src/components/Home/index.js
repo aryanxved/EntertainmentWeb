@@ -294,7 +294,7 @@ function Review() {
 
 return(
   <div>
-     <Title></Title>
+      <Title></Title>
       <MovieSelection handler={setMovie} errorMessage = {movieError} movies = {movieList}></MovieSelection>
       <ReviewTitle handler={setMovieTitle} errorMessage = {movieErrorTitle}></ReviewTitle>
       <ReviewBody handler={setMovieDescription} errorMessage = {movieErrorDescription}></ReviewBody>

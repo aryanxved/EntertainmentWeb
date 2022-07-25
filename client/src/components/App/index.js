@@ -35,7 +35,7 @@ class App extends Component {
     <>
 	  <Router>
 	    <div>
-        
+
         <PrivateRoute exact path="/" component={Home}/>
 	    </div>
 	  </Router>
