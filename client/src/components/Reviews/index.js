@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { MuiThemeProvider, createTheme } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import {Grid, Button, Select, MenuItem, FormControl, InputLabel, TextField, Radio, FormLabel, RadioGroup, FormControlLabel, FormHelperText} from "@material-ui/core/";
+import {Card, Grid, Button, Select, MenuItem, FormControl, InputLabel, TextField, Radio, FormLabel, RadioGroup, FormControlLabel, FormHelperText} from "@material-ui/core/";
 import NavBar from '../NavBar';
 
 //Dev mode
@@ -23,9 +23,9 @@ const opacityValue = 0.9;
 
 const theme = createTheme({
   palette: {
-    type: 'light',
+    type: 'dark',
     background: {
-      default: "#ffffff"
+      default: "#51A0D5"
     },
     primary: {
       main: "#000000",
@@ -68,7 +68,7 @@ const styles = theme => ({
 function Title(){
   return(
   <div>
-  <Typography align="center" variant="h3" component="div" gutterBottom>
+  <Typography align="center" variant="h3" component="div" gutterBottom style={{width: "120vh"}}>
         Review a Movie
       </Typography>
   </div>
@@ -82,7 +82,10 @@ function ReviewTitle(props){
     props.handler(event.target.value);
   };
 
+  
+
   return(
+    <form noValidate autocomplete='off'>
   <TextField
       error={props.errorMessage==="" ? false : true}
       onChange={handleChange}
@@ -92,8 +95,10 @@ function ReviewTitle(props){
           defaultValue=""
           helperText={props.errorMessage}
           variant="outlined"
-          style={{marginTop: "50px", width: "120vh"}}
+          style={{marginTop: "30px", width: "100vh"}}
         />
+
+        </form>
   )
 }
 
@@ -105,7 +110,7 @@ function MovieSelection(props){
   
   return(
     <div>
-      <FormControl variant="outlined" style={{marginTop: "30px", width: "120vh"}}>
+      <FormControl variant="outlined" style={{marginTop: "30px", width: "100vh"}}>
         <InputLabel>Select Movie</InputLabel>
         <Select
           error={props.errorMessage==="" ? false : true}
@@ -131,7 +136,7 @@ function ReviewBody(props){
   
   return(
   <div>
-    <TextField style={{width: "120vh", marginTop: "30px"}}
+    <TextField style={{width: "100vh", marginTop: "30px"}}
     
     error={props.errorMessage==="" ? false : true}
     onChange={handleChange}
@@ -294,15 +299,19 @@ function Review() {
 
 return(
   <div>
-     <Title></Title>
+    <Card style={{marginLeft: "50px", marginRight: "50px", backgroundColor:"#001833"}}>
+        <div align="center">
+    <Title></Title>
       <MovieSelection handler={setMovie} errorMessage = {movieError} movies = {movieList}></MovieSelection>
       <ReviewTitle handler={setMovieTitle} errorMessage = {movieErrorTitle}></ReviewTitle>
       <ReviewBody handler={setMovieDescription} errorMessage = {movieErrorDescription}></ReviewBody>
       <ReviewRating handler={setMovieRating} errorMessage = {movieErrorRating}></ReviewRating>
-      <Button variant="outlined" onClick={submitButton}>Submit</Button>
+      <Button variant="outlined" onClick={submitButton} style={{backgroundColor: "#3f50b5", }}>Submit</Button>
       <Typography variant="h5" component="div" gutterBottom>
         {movieInfo}
       </Typography>
+      </div>
+      </Card>
   </div>
 
 )

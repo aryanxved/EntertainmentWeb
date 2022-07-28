@@ -13,8 +13,9 @@ import Tooltip from '@material-ui/core/Tooltip';
 import MenuItem from '@material-ui/core/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from "react-router-dom";
+import LiveTvIcon from '@mui/icons-material/LiveTv';
 
-const pages = ['Landing', 'Search', 'Reviews', 'myPage'];
+const pages = ['Landing', 'Search', 'Reviews', 'Lucky'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const NavBar = () => {
@@ -40,18 +41,20 @@ const NavBar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <LiveTvIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
             component="a"
             href="/Landing"
-            sx={{
+            style={{
               mr: 2,
+              marginRight: "20px",
+              align: "center",
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: '.3rem',
+              letterSpacing: '.0.5rem',
               color: 'inherit',
               textDecoration: 'none',
             }}
@@ -92,7 +95,7 @@ const NavBar = () => {
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
-                  <Link style={{textDecoration: "none", color: 'white'}} to={`/${page}`}>
+                  <Link style={{textDecoration: "none", color: 'black'}} to={`/${page}`}>
                     {page}
                   </Link>
                   </Typography>
@@ -100,11 +103,12 @@ const NavBar = () => {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <LiveTvIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, color: {xs: 'black'}}}>
             {pages.map((page) => (
               <Button
+                
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
@@ -119,7 +123,7 @@ const NavBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="User One" src="../images/movie3.jpg" />
               </IconButton>
             </Tooltip>
             <Menu

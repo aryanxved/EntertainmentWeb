@@ -57,7 +57,6 @@ export default function Landing() {
             </Card>
             </Card>
         </div>
-
             </div>
         </div>
         

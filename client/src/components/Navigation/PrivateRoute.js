@@ -20,9 +20,9 @@ export default function PrivateRoute({
       <NavBar />
       <Switch>
       <Route path="/Landing" exact component={Landing} />
-      <Route path="/search" exact component={Search} />
-      <Route path="/reviews" exact component={Reviews} />
-      <Route path="/myPage" exact component={MyPage} />
+      <Route path="/Search" exact component={Search} />
+      <Route path="/Reviews" exact component={Reviews} />
+      <Route path="/Lucky" exact component={MyPage} />
       <Route path="*">
           <Redirect to="/Landing" />
         </Route>
