@@ -172,16 +172,16 @@ function Review() {
 
   const submitButton = () => {
     getRandom()
-    console.log(randomResultMovieId)
-    console.log(randomReviewList)
-    console.log(movieName[index])
-    console.log(movieId)
-    console.log(index)
+    console.log("movie selected id :" + randomResultMovieId)
+    console.log("MovieName at index: " + movieName[index])
+    console.log("MovieId : " + movieId)
+    console.log("index: " + index)
     randomReviewList.map((item) => {
         setRandomResult(item.reviewTitle)
         setRandomResultDescription(item.reviewContent)
         setRandomResultRating(item.reviewScore)
         setRandomResultMovieId(item.movieID)
+        console.log("movie selected id from loop:" + item.movieID)
       })
       setRandomResultMovieName(movieName[index])
     // if (Object.keys(movieRandomInfo).length !== 0){
