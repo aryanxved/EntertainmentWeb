@@ -49,12 +49,9 @@ export default function Landing() {
                     <br />
                     <br />
                     <br />
-                    {'"Movie Fans Unite!"'}
+                    {'- Designed and coded by Aryan -'}
                 </Typography>
             </CardContent>
-            <CardActions>
-                <Button size="small">Learn More</Button>
-            </CardActions>
             </Card>
             </Card>
         </div>
