@@ -8,10 +8,10 @@ import {Card, Grid, Button, Select, MenuItem, FormControl, InputLabel, TextField
 import NavBar from '../NavBar';
 
 //Dev mode
-const serverURL = ""; //enable for dev mode
+//const serverURL = ""; //enable for dev mode
 
 //Deployment mode instructions
-//const serverURL = "ec2-18-216-101-119.us-east-2.compute.amazonaws.com:"; //enable for deployed mode; Change PORT to the port number given to you;
+const serverURL = "ec2-18-216-101-119.us-east-2.compute.amazonaws.com:3093"; //enable for deployed mode; Change PORT to the port number given to you;
 //To find your port number: 
 //ssh to ov-research-4.uwaterloo.ca and run the following command: 
 //env | grep "PORT"
