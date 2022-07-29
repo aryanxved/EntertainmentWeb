@@ -4,6 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import {Card, CardActions, CardContent, Grid, Button, Select, MenuItem, FormControl, InputLabel, TextField, Radio, FormLabel, RadioGroup, FormControlLabel, FormHelperText, CssBaseline} from "@material-ui/core/";
 import { height } from '@mui/system';
 import { makeStyles } from '@material-ui/styles';
+import "./index.css"
 
 const useStyles = makeStyles((theme) => ({
 root: {
@@ -18,7 +19,7 @@ root: {
 export default function Landing() {
     const classes = useStyles();
     return (
-        <div className={classes.root}>
+        <div className="backdroplanding">
             <div>
             <CssBaseline /> 
                 <div>

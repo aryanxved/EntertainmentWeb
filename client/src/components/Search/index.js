@@ -4,7 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import {Card, CardActions, CardContent, Grid, Button, Select, MenuItem, FormControl, InputLabel, TextField, Radio, FormLabel, RadioGroup, FormControlLabel, FormHelperText, CssBaseline} from "@material-ui/core/";
 import { height } from '@mui/system';
 import { makeStyles } from '@material-ui/styles';
-
+import "./index.css"
 const serverURL = "";
 
 
@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
     
         minHeight: '100vh',
-        backgroundImage: `url(${process.env.PUBLIC_URL + '../images/movie1.jpg'})`,
+        backgroundImage: `url(${process.env.PUBLIC_URL + "reactEntertainment/client/src/components/Images/movie1.jpg"})`,
         //background: "lightblue",
         backgroundRepeat:"no-repeat",
         backgroundSize:"cover",
@@ -148,7 +148,7 @@ var searchNames = searchList.map(a => a.name);
         }
 
         return (
-            <div className={classes.root}>
+            <div className="backdrop">
             <Card></Card>
             <div align="center" marginTop="50px">
             <Card style={{color: 'white', backgroundColor: '#001833', marginLeft: "150px", marginRight: '150px',  marginTop: "50px", height: "120vh"}}>
