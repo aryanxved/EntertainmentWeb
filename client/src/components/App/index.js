@@ -10,6 +10,7 @@ import PrivateRoute from '../Navigation/PrivateRoute.js';
 
 
 
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -31,11 +32,14 @@ class App extends Component {
 
   render() {
     return (
+    <>
 	  <Router>
 	    <div>
+
         <PrivateRoute exact path="/" component={Home}/>
 	    </div>
 	  </Router>
+    </>
     );
   }
 }
